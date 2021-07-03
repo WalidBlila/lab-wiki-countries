@@ -1,17 +1,25 @@
 import React from 'react';
+import countries from '../countries.json';
 import { Link } from 'react-router-dom';
-
 const CountriesList = () => {
   return (
-      <div>
-    <ul>
-  <li><Link to='/France' style={{ textDecoration: 'none' }}>France</Link></li>
-  <li><Link to='/Espagne' style={{ textDecoration: 'none' }}>Espagne</Link></li>
-  <li><Link to='/Turquie' style={{ textDecoration: 'none' }}>Turquie</Link></li>
-</ul>
-</div>
-    
-  )
-}
-
+    <div className="col-5" style={{ maxHeight: '90vh', overflow: 'scroll' }}>
+      <div className="list-group">
+        {countries.map((eachCountry) => {
+          return (
+            <Link
+              to={`/${eachCountry.cca3}`}
+              key={eachCountry.cca3}
+              className="list-group-item list-group-item-action"
+            >
+              <div>
+                {eachCountry.flag} {eachCountry.name.common}
+              </div>
+            </Link>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 export default CountriesList;
